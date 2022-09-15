@@ -5,6 +5,8 @@ const formRef = document.querySelector('.feedback-form');
 const SAVED_DATA_KEY = 'feedback-form-state';
 const formData = {};
 
+console.log(formRef);
+
 formRef.addEventListener('submit', onFormSubmit);
 formRef.addEventListener('input', throttle(onFormInput, 500));
 
@@ -32,11 +34,7 @@ function onPageUpdate() {
   const savedData = JSON.parse(localStorage.getItem(SAVED_DATA_KEY));
 
   if (savedData) {
-    formRef.elements.email.value = savedData.email;
-    formRef.elements.message.value = savedData.message;
-
-    //   console.log(savedData);
-    //   console.dir(formRef)
+    formRef.elements.email.value = savedData.email ? savedData.email : '';
+    formRef.elements.message.value = savedData.message ? savedData.message : '';
   }
 }
-
